@@ -1,10 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pelicula } = require('./models/Pelicula');
-const PORT = 3001;
+const cors = require('cors');
+const PORT = 3000;
 
 const app = express();
 
+app.use(cors({
+    'allowedHeaders': ['sessionId', 'Content-Type'],
+    'exposedHeaders': ['sessionId'],
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'preflightContinue': false
+  }));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
